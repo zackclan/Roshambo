@@ -1,0 +1,85 @@
+<script>
+let computerWin = 0
+let playerWin = 0
+
+let computerPlay = () => {
+    let num = Math.floor(Math.random() * 3) + 1
+    if(num === 1){
+        return "rock"
+    }else if(num === 2){
+        return "scissors"
+    }else if(num === 3){
+        return "paper"
+    }  
+
+}
+let scoreCard = () => {
+    console.log("you have " + playerWin + " wins, and the computer has " + computerWin + " wins.")
+}
+
+let playRound = (playerChoice, computerChoice) => {
+    if (playerChoice.toLowerCase() === computerChoice){
+        console.log("you both picked " + playerChoice + ", tie game.")
+        scoreCard();
+    }else if(playerChoice.toLowerCase() === "scissors" && computerChoice === "rock"){
+        console.log("you picked scissors and the computer crushed your scissors with rock")
+        computerWin ++
+        scoreCard();
+    }else if(playerChoice.toLowerCase() === "rock" && computerChoice === "paper"){
+        console.log("you picked rock and the computer smothers your rock with paper")
+        computerWin ++
+        scoreCard();
+    }else if(playerChoice.toLowerCase() === "scissors" && computerChoice === "paper"){
+        console.log("you picked scissors and you cut the computers paper")
+        playerWin ++
+        scoreCard();
+    }else if(playerChoice.toLowerCase() === "rock" && computerChoice === "scissors"){
+        console.log("you picked rock and smash the computer scissors")
+        playerWin ++
+        scoreCard();
+    }else if(playerChoice.toLowerCase() === "paper" && computerChoice === "rock"){
+        console.log("you picked paper and smother the computers rock")
+        playerWin ++
+        scoreCard();
+    }else if(playerChoice.toLowerCase() === "paper" && computerChoice === "scissors"){
+        console.log("you picked paper and got sliced by the computers scissors")
+        computerWin ++
+        scoreCard();
+    }
+
+
+
+
+
+}
+
+
+
+let status = true;
+let game = () => {
+    
+    while(status){
+        const playerSelection = prompt("What is your choice");
+        const computerChoice = computerPlay();
+        playRound(playerSelection, computerChoice)
+    
+        if(computerWin === 5){
+        console.log("The computer has defeated you")
+        status = false;
+        
+        }else if(playerWin === 5){
+        console.log("You have defeated the computer")
+        status = false;
+    }
+    }
+
+
+
+}
+
+game();
+
+
+
+
+</script>
